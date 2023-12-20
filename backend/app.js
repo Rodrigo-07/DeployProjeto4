@@ -403,7 +403,7 @@ const port = 8883; // Porta de conexão
 const mqtt_user = "ESP32_Connect4";
 const mqtt_pass = "123drigo";
 
-const dbFilePath = './backend/GPS.db';
+const dbFilePath = './GPS.db';
 
 // Create a SQLite database connection
 const dbConnection = new sqlite3.Database(dbFilePath);
@@ -412,7 +412,7 @@ const dbConnection = new sqlite3.Database(dbFilePath);
 const topiGPS = "GPS";
 const topicLat = "GPS/Latitude";
 const topicLong = "GPS/Longitude";
-const caFile = './backend/ca_certificate.pem'; // Endereço do cerificado CA
+const caFile = './ca_certificate.pem'; // Endereço do cerificado CA
 
 // Parametros de conexão MQTT
 const options = {
