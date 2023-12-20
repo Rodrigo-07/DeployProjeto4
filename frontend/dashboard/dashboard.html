@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard</title>
+	<link rel="icon" type="imagem/png" href="../assets/images/icone.png" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+
+	<!--Incluindo bootstrap-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+	<!-- Incluindo Leaflet-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<!--Incluindo css-->
+	<link rel="stylesheet" href="../assets/css/style.css" />
+
+	<!-- Incluindo Chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+
+
+	<!--Título-->
+	<title>Main</title>
+
+	<script src="./dashboard.js" defer></script>
+	<script src="./graficos/barras.js" defer></script>
+	<script src="./graficos/pizza.js" defer></script>
+	<script src="../scripts/GPSmain.js" defer></script>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body style="background: linear-gradient(180deg, rgba(96, 56, 242, 1) 0%, rgba(132, 102, 242, 1) 100%); height:100%;">
+	<!--NavBar-->
+	<nav class="navbar navbar-expand pt-2 pb-n5">
+
+		<!--Botões da NavBar-->
+		<div class="collapse navbar-collapse justify-content-center">
+			<ul class="navbar-nav">
+
+				<li class="nav-item me-5 ms-4">
+					<img onclick="getUserIDAndNavigate('../mainPage/main_page1.html') "
+						class="main-page-icon-3 logo w-50 mt-4 ms-5" src="../assets/images/icone.png" alt="logo"
+						style="height: 50px;" />
+				</li>
+
+				<!--Botão de Dados-->
+				<li class="main-page-button-3 nav-item me-5 ms-5 mt-2 pb-2">
+					<button onclick="getUserIDAndNavigate('../meuPerfil/meuPerfil.html')"
+						class="main-page-button-3-text logo nav-link" style="
+							width: 100px;
+							height: 90px;
+							font-style: bold;
+							font-weight: 500;
+							font-size: 17px;
+							line-height: 24px;
+							color: white;
+						">
+						Meu Perfil
+					</button>
+				</li>
+
+				<!--Botão do Relatório-->
+				<li class="main-page-button-3 nav-item me-5 ms-5 mt-2 pb-2">
+					<button onclick="getUserIDAndNavigate('../favoritos/favoritos.html')"
+						class="main-page-button-3-text  logo nav-link" style="
+							width: 100px;
+							height: 90px;
+							font-style: bold;
+							font-weight: 500;
+							font-size: 17px;
+							line-height: 24px;
+							color: white;
+						">
+						Favoritos
+					</button>
+				</li>
+
+				<!--Botão do Perfil-->
+				<li class="main-page-button-3 nav-item me-5 ms-4 mt-2 pb-2">
+					<button onclick="getUserIDAndNavigate('../dashboard/dashboard.html')"
+						class="main-page-button-3-text  logo nav-link" style="
+							width: 100px;
+							height: 90px;
+							font-style: bold;
+							font-weight: 500;
+							font-size: 17px;
+							line-height: 24px;
+							color: white;
+						">
+						Dashboard
+					</button>
+				</li>
+
+				<!--Botão de Home-->
+				<li class="main-page-button-3 nav-item me-5 ms-4 mt-2 pb-2">
+					<button onclick="getUserIDAndNavigate('../relatorio/relatorio.html')"
+						class="main-page-button-3-text logo nav-link pb-n5" style="
+							width: 100px;
+							height: 90px;
+							font-style: bold;
+							font-weight: 500;
+							font-size: 17px;
+							line-height: 24px;
+							color: white;
+						">
+						Relatórios
+					</button>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<!--Container principal-->
+	<div class="container scroller pb-5"
+		style="background-color: white; border-radius: 50px; height: 78%; margin-top:-10px;">
+		<div class="row">
+			<div class="dropdown mx-auto mt-4 justify-content-center d-flex">
+				<button id="dropdownButton" class="btn btn-1 btn-light btn-lg dropdown-toggle w-75 " type="button"
+					data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(228, 228, 228, 0.70);
+								color: rgba(96, 56, 242, 1);
+								font-weight: bold;
+								box-shadow: 5px 5px 10px 0px #d4d4d4;
+								border-radius: 24px;
+								">
+					Selecionar ativo
+				</button>
+				<ul class="dropdown-menu w-75" id="dropdownMenu">
+
+				</ul>
+			</div>
+			
+		</div>
+		<div class="mt-4 d-flex justify-content-between">
+			<div>
+				<button class="button btn-2" onclick="" id="redirectButton">Ver Relatório</button>
+				<button class="button btn-2 ms-2" data-bs-toggle="modal" data-bs-target="#formModal">Novo Ativo</button>
+				<button class="button btn-2" data-bs-toggle="modal" data-bs-target="#ativoModal">Informações dos ativos</button>
+			</div>
+			<button class="button" onclick="addToFavoritesFromURL()">Favoritar</button>
+			<!-- Modal -->
+			<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="formModalLabel">Novo Ativo</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form id="userForm" onsubmit="return validateForm()">
+								<div class="row">
+									<div class="col">
+										<div class="mb-3">
+											<label for="ne_name" class="form-label">NE Name</label>
+											<input type="text" class="form-control" id="ne_name">
+										</div>
+										<div class="mb-3">
+											<label for="uf" class="form-label">UF</label>
+											<input type="text" class="form-control" id="uf">
+										</div>
+										<div class="mb-3">
+											<label for="cidade" class="form-label">Cidade</label>
+											<input type="text" class="form-control" id="cidade">
+										</div>
+										<div class="mb-3">
+											<label for="board_full_name" class="form-label">Board Full Name</label>
+											<input type="text" class="form-control" id="board_full_name">
+										</div>
+										<div class="mb-3">
+											<label for="board_name" class="form-label">Board Name</label>
+											<input type="text" class="form-control" id="board_name">
+										</div>
+									</div>
+									<div class="col">
+										<div class="mb-3">
+											<label for="board_type" class="form-label">Board Type</label>
+											<input type="text" class="form-control" id="board_type">
+										</div>
+										<div class="mb-3">
+											<label for="ne_type" class="form-label">NE Type</label>
+											<input type="text" class="form-control" id="ne_type">
+										</div>
+										<div class="mb-3">
+											<label for="sn" class="form-label">SN</label>
+											<input type="text" class="form-control" id="sn">
+										</div>
+										<div class="mb-3">
+											<label for="pn" class="form-label">PN</label>
+											<input type="text" class="form-control" id="pn">
+										</div>
+										<div class="mb-3">
+											<label for="esp" class="form-label">ESP</label>
+											<select id="esp" class="form-control" style="height: 35px;
+									width: 100%; color: #b9b2b2;">
+												<option hidden="">Escolha um ESP</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" style="border-radius: 25px;
+						background: red;
+						display: inline-block; 
+						margin-left: auto;
+						border: none;
+						color:white;
+						font-weight: bold;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+							<button type="submit" style="border-radius: 25px;
+						background: #6038F2;
+						display: inline-block; 
+						border: none;
+						color:white;
+						font-weight: bold;" class="btn btn-primary" form="userForm">Cadastrar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+			<div class="modal fade" id="ativoModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="formModalLabel">Informações dos ativos</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div id="textoDinamico">Texto dinamico</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" style="border-radius: 25px;
+						background: red;
+						display: inline-block; 
+						margin-left: auto;
+						border: none;
+						color:white;
+						font-weight: bold;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Feedback Modal Novo Ativo OK -->
+			<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="feedbackModalLabel">Sucesso!</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							O novo ativo foi cadastrado.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" style="border-radius: 25px;
+								background: red;
+								display: inline-block; 
+								margin-left: auto;
+								border: none;
+								color:white;
+								font-weight: bold;" data-bs-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+				<!-- Feedback Modal Novo Ativo ERRO -->
+				<div class="modal fade" id="feedbackModalERR" tabindex="-1" aria-labelledby="feedbackModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="feedbackModalLabel">Erro!</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							O ativo não foi cadastro, favor preencher todos os campos.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" style="border-radius: 25px;
+								background: red;
+								display: inline-block; 
+								margin-left: auto;
+								border: none;
+								color:white;
+								font-weight: bold;" data-bs-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Feedback Modal, ativo favoritado-->
+			<div class="modal fade" id="feedbackModalFAV" tabindex="-1" aria-labelledby="feedbackModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="feedbackModalLabel">Sucesso!</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							O ativo foi favoritado com sucesso.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" style="border-radius: 25px;
+								background: red;
+								display: inline-block; 
+								margin-left: auto;
+								border: none;
+								color:white;
+								font-weight: bold;" data-bs-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Feedback Modal, ativo ja favoritado-->
+			<div class="modal fade" id="feedbackModalFAVERR" tabindex="-1" aria-labelledby="feedbackModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="feedbackModalLabel">Erro!</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							O ativo ja foi favoritado.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" style="border-radius: 25px;
+								background: red;
+								display: inline-block; 
+								margin-left: auto;
+								border: none;
+								color:white;
+								font-weight: bold;" data-bs-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script>
+				// Função para validar o formulário
+				document.getElementById('userForm').addEventListener('submit', function (e) {
+					e.preventDefault();
+
+					// Varíaveis para armazenar os valores dos campos de input
+					const ne_name = document.getElementById('ne_name').value;
+					const uf = document.getElementById('uf').value;
+					const cidade = document.getElementById('cidade').value;
+					const board_full_name = document.getElementById('board_full_name').value;
+					const board_name = document.getElementById('board_name').value;
+					const board_type = document.getElementById('board_type').value;
+					const ne_type = document.getElementById('ne_type').value;
+					const sn = document.getElementById('sn').value;
+					const pn = document.getElementById('pn').value;
+					const esp = document.getElementById('esp').value;
+
+					// Checa se algum dos valores está vazio
+					if (
+						ne_name.trim() === "" ||
+						uf.trim() === "" ||
+						cidade.trim() === "" ||
+						board_full_name.trim() === "" ||
+						board_name.trim() === "" ||
+						board_type.trim() === "" ||
+						ne_type.trim() === "" ||
+						sn.trim() === "" ||
+						pn.trim() === "" ||
+						esp.trim() === "Escolha um ESP"
+					) {
+
+						var feedbackModalERR = new bootstrap.Modal(document.getElementById('feedbackModalERR'));
+							feedbackModalERR.show();
+							document.getElementById('userForm').reset(); // Limpa o formulário
+							setTimeout(() => { // Fecha o modal depois de 3 segundos
+								document.location.reload();
+							}, 3000);
+						
+						return;
+					}
+
+					// Se todos os valores foram preenchidos, cria um objeto com os valores
+					const formData = {
+						ne_name,
+						uf,
+						cidade,
+						board_full_name,
+						board_name,
+						board_type,
+						ne_type,
+						sn,
+						pn,
+						esp,
+						state: "Desconectado"
+					};
+
+					console.log(formData); // Para debug
+
+					// Envia os dados para o servidor
+					fetch('/add-equipment', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify(formData)
+						})
+						.then(response => response.json())
+						.then(data => { // Resposta do servidor
+							console.log('Success:', data);
+							document.getElementById('userForm').reset(); // Limpa o formulário
+							var feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+							feedbackModal.show();
+							setTimeout(() => { // Fecha o modal depois de 3 segundos
+								document.location.reload();
+							}, 3000);
+						})
+						.catch((error) => {
+							console.error('Error:', error);
+						});
+				});
+
+			</script>
+		</div>
+		<div id="textoDinamico1" class="mt-2"></div>
+		<div class="container">
+			<div class="dashboard-container">
+				<div class="widget" id="widget1">
+					<!-- Conteúdo do Widget 1 -->
+					<canvas id="barChart"></canvas>
+				</div>
+				<div class="widget" id="widget2">
+					<!-- Conteúdo do Widget 2 -->
+					<canvas id="pieChart"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<!--Incluindo bootstrap-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+	</script>
+	<script>
+		// Função para validar o formulário
+		function validateForm() {
+			let isValid = true;
+
+			// Lista de IDs dos campos de input
+			const inputIds = ['ne_name', 'uf', 'cidade', 'board_full_name', 'board_name', 'board_type', 'ne_type', 'sn',
+				'pn'
+			];
+
+			// Checa se todos os campos foram preenchidos
+			inputIds.forEach(function (id) {
+				const inputElement = document.getElementById(id);
+
+				if (inputElement.value.trim() === '') {
+					inputElement.style.border = '2px solid red';
+					isValid = false;
+				}
+			});
+			if (isValid) {
+				const modalElement = document.getElementById('formModal');
+				const modalInstance = bootstrap.Modal.getInstance(modalElement);
+				modalInstance.hide();
+
+			}
+			return isValid;
+
+		}
+	</script>
+	<script>
+
+		function searchId() { //Pega o valor do filtro de ID e pesquisa os ativos correspondentes
+			fetch('/equipment-id') // Fetch do equipment-id
+				.then(response =>response.json())
+				.then(data => {
+					const selectBox = document.getElementById("idSelect");
+					var selectedOption = selectBox.value;
+					if (selectedOption != "") {
+						clearMarkers();
+					}
+					data.forEach(column => {
+						if (column.Board_Full_Name == selectedOption) {
+							var lat = column.Latitude;
+							var long = column.Longitude;
+							var id = column.id;
+							var ativo = column.Ativo;
+							var date = column.Date;
+
+
+							var marker = L.marker([lat, long]).addTo(map);
+							marker.bindPopup(`<b>Id: </b> ${String(id)} <br><b>Ativo: </b> ${String(ativo)} <br><b>Data: </b> ${String(date)}` + `<br><a href=https://www.google.com/maps?q=${lat},${long}>Acessar </a>`);
+							markersList.push(marker);
+						}
+					})
+				})
+			}
+
+		var selectBox = document.getElementById("esp");
+		selectBox.addEventListener("change", function () {
+			searchId()
+		})
+	</script>
+	<script>
+		function updateESP() {
+
+fetch('/gps-esp')
+		.then(response => response.json())
+		.then(data1 => {
+			// Fetch data from endpoint2
+			fetch('/equipment-esp')
+				.then(response => response.json())
+				.then(data2 => {
+
+					const ESP1 = data1.map(item => item.ESP);
+					const ESP2 = data2.map(item => item.ESP);
+					// Compare data1 and data2
+					const result = ESP1.filter(item => !ESP2.includes(item));
+					console.log(result);
+
+					const selectBox = document.getElementById('esp');
+
+					result.forEach(item => {
+						console.log(item);
+						const newOption = document.createElement("option");
+						newOption.value = item;
+						newOption.textContent = item;
+						selectBox.appendChild(newOption);
+					});
+				})
+					
+			.catch(error => console.error('Error fetching id data:', error));
+		})
+		.catch(error => console.error('Error fetching id data:', error));
+		
+		
+	
+	
+}
+		updateESP()
+	</script>
+</body>
+
+</html>

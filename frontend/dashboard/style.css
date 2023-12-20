@@ -1,0 +1,32 @@
+  /* Adicione estilos CSS para a div */
+  .data-item {
+    border: 1px solid #ddd; /* Adiciona uma borda ao redor da div */
+    padding: 10px; /* Adiciona algum espaçamento interno à div */
+    margin-bottom: 10px; /* Adiciona algum espaçamento inferior entre as divs */
+    text-align: justify;
+  }
+
+  strong {
+    color: #333; /* Adiciona cor ao texto forte (strong) */
+  }
+/* Adicione estilos CSS para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+
+    #textoDinamico1 {
+        text-align: center;
+        font-family: 'Inter', sans-serif; /* Adiciona a fonte Inter ao título */
+      }

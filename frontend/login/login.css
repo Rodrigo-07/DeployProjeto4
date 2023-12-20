@@ -1,0 +1,59 @@
+#esquerdo {
+    background: linear-gradient(180deg, #6038F2 49.17%, #8466F2 78.37%);
+}
+
+.body {
+    background: linear-gradient(180deg, #6038F2 49.17%, #8466F2 78.37%);
+}
+
+#mensagem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+input:focus {
+    outline: none;
+}
+
+.inputField {
+    box-shadow: 0 0 0 2px red;
+}
+
+.form-field {
+    background-color: #E4E4E478;
+    padding: 8px;
+    width: 400px; 
+    border-radius: 25px;
+    border: none;
+    box-sizing: border-box;
+}
+
+#send {
+    border-radius: 25px;
+    background: linear-gradient(180deg, #6038F2 0%, #8466F2 98.44%);
+    display: block; 
+
+    width: 200px;
+    height: 45px;
+    border: none;
+    color:white;
+    font-weight: bold;
+}
+
+#password::placeholder,
+#user::placeholder {
+    color: rgba(104, 104, 104, 0.6);
+}
+
+
+.field-message {
+    color:red;
+    font-size: 15px;
+}

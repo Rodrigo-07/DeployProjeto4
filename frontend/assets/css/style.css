@@ -1,0 +1,169 @@
+body {
+  background: linear-gradient(180deg, rgb(8, 155, 165) 0%, rgb(102, 242, 230) 100%); height:100%;
+}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+/*Navbar*/
+.main-page-icon-3:hover {
+  transform: scale(1.2);
+  transition: .8s;
+}
+
+.main-page-button-3:hover {
+  width: 100px;
+  border-radius: 50px 50px 0 0;
+  background: white;
+  transition: .8s;
+  color: rgba(96, 56, 242, 1)!important; 
+  transition: .4s;
+}
+
+.main-page-button-3-text:hover {
+  color: rgba(96, 56, 242, 1)!important; 
+  transition: .8s;
+}
+
+
+/*Geral*/
+.button {
+  border-radius: 25px;
+  background: linear-gradient(180deg, #6038F2 0%, #8466F2 98.44%);
+  display: inline-block; 
+  margin-left: auto;
+  width: 200px;
+  height: 45px;
+  border: none;
+  color:white;
+  font-weight: bold;
+}
+
+.btn-2:hover {
+  transform: scale(1.05);
+  transition: .4s;
+}
+
+.vertical-scrollable>.row {
+  position: absolute;
+  top: 120px;
+  bottom: 100px;
+  left: 180px;
+  width: 80%;
+  overflow-y: scroll;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.scroller {
+  overflow-y: scroll;
+  scrollbar-width: none; 
+}
+
+
+/*Dashboard*/
+input {
+  background-color: rgba(228, 228, 228, 0.70); 
+  border-radius: 50px;
+}
+
+label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 24px;
+  color: rgba(96, 56, 242, 1);
+}    
+
+
+
+/*Favoritos*/
+
+
+
+/*Main Page*/
+.hidden{
+  display:none !important;
+}
+
+
+
+/*Meu Perfil*/
+.circular-shape {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+  height: 50%;
+  width: 60%;
+}
+
+#user-image {
+  position: relative;
+  width: 65%;
+  top: 70px;
+  left: 50px;
+}
+
+.form-field {
+  border-width: 0px;
+}
+
+#forms {
+  width: 25%;
+  height: auto;
+}
+
+input {
+  background-color: rgba(228, 228, 228, 0.70); 
+  border-radius: 50px;
+}
+
+.container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.container input[type="text"],
+.container textarea {
+  height: 35px;
+  width: 100%;
+}
+
+.container input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 24px;
+  color: rgba(96, 56, 242, 1);
+} 
+
+
+
+
+
+
+/*Relatório*/
+.btn-2:hover {
+  transform: scale(1.05);
+  transition: .4s;
+}
+
+
+.buttonInfo {
+  
+}

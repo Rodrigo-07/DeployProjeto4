@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+		<head>
+			<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios</title>
+    <link rel="icon" type="imagem/png" href="../assets/images/icone.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<script src=
+	"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	   </script>
+	   <script src=
+   "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+	   </script>
+	   <script src=
+	"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+	
+	
+	   </script>
+			<!--Incluindo bootstrap-->
+			<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+			crossorigin="anonymous"
+			/>
+			<!-- Incluindo Leaflet-->
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+			crossorigin=""/>
+			<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+			crossorigin=""></script>
+
+			<!--Incluindo css-->
+			<link rel="stylesheet" href="../assets/css/style.css"/>
+
+			<!--Título-->
+			<title>Main</title>
+		</head>
+		<body style="background: linear-gradient(180deg, rgba(96, 56, 242, 1) 0%, rgba(132, 102, 242, 1) 100%)" class="h-100">
+			<!--NavBar-->
+			<link href="./main-page.css" rel="stylesheet" />
+			<nav class="navbar navbar-expand pt-2 pb-n5">
+
+				<!--Botões da NavBar-->
+				<div class="collapse navbar-collapse justify-content-center">
+					<ul class="navbar-nav">
+	
+						<li class="nav-item me-5 ms-4">
+							<img onclick="getUserIDAndNavigate('../mainPage/main_page1.html') "
+								class="main-page-icon-3 logo w-50 mt-4 ms-5" src="../assets/images/icone.png" alt="logo"
+								style="height: 50px;" />
+						</li>
+	
+						<!--Botão de Dados-->
+						<li class="main-page-button-3 nav-item me-5 ms-5 mt-2 pb-2">
+							<button onclick="getUserIDAndNavigate('../meuPerfil/meuPerfil.html')"
+								class="main-page-button-3-text logo nav-link" style="
+								width: 100px;
+								height: 90px;
+								font-style: bold;
+								font-weight: 500;
+								font-size: 17px;
+								line-height: 24px;
+								color: white;
+							">
+								Meu Perfil
+							</button>
+						</li>
+	
+						<!--Botão do Relatório-->
+						<li class="main-page-button-3 nav-item me-5 ms-5 mt-2 pb-2">
+							<button onclick="getUserIDAndNavigate('../favoritos/favoritos.html')"
+								class="main-page-button-3-text  logo nav-link" style="
+								width: 100px;
+								height: 90px;
+								font-style: bold;
+								font-weight: 500;
+								font-size: 17px;
+								line-height: 24px;
+								color: white;
+							">
+								Favoritos
+							</button>
+						</li>
+	
+						<!--Botão do Perfil-->
+						<li class="main-page-button-3 nav-item me-5 ms-4 mt-2 pb-2">
+							<button onclick="getUserIDAndNavigate('../dashboard/dashboard.html')"
+								class="main-page-button-3-text  logo nav-link" style="
+								width: 100px;
+								height: 90px;
+								font-style: bold;
+								font-weight: 500;
+								font-size: 17px;
+								line-height: 24px;
+								color: white;
+							">
+								Dashboard
+							</button>
+						</li>
+	
+						<!--Botão de Home-->
+						<li class="main-page-button-3 nav-item me-5 ms-4 mt-2 pb-2">
+							<button onclick="getUserIDAndNavigate('../relatorio/relatorio.html')"
+								class="main-page-button-3-text logo nav-link pb-n5" style="
+								width: 100px;
+								height: 90px;
+								font-style: bold;
+								font-weight: 500;
+								font-size: 17px;
+								line-height: 24px;
+								color: white;
+							">
+								Relatórios
+							</button>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!--Container principal-->
+			<div class="container pb-5" style="background-color: white; border-radius: 50px; margin-top:-10px; height: 78%;">
+				<div class="row">
+					<div class="btn-2 dropdown mx-auto mt-4" style="width: 1050px;">
+						<button id="dropdownButton"class="btn btn-1 btn-light btn-lg dropdown-toggle w-100 mt-4 " type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: rgba(228, 228, 228, 0.70);
+							color: rgba(96, 56, 242, 1);
+							font-weight: bold;
+							box-shadow: 5px 5px 10px 0px #d4d4d4;
+							border-radius: 24px;
+							"
+							>
+						Selecionar ativo
+						</button>
+						<ul class="dropdown-menu w-100" id="ativoDropdown">
+						</ul>
+					</div>
+				</div>	
+				<div id="dataDisplay" class="container pb-3 pt-3 mt-5 d-flex flex-column-reverse h-75 flex-grow-1 align-itens-stretch w-75" style="background-color: rgba(228, 228, 228, 0.70); 
+				border-radius: 25px;
+				"
+				>
+				</div>
+				<div class="container">
+					<a id="downloadPDF"class="mt-2 d-flex" href="#" onclick="" style="color:#6038F2;
+					text-decoration: none;
+					margin-left: 1000px;
+					font-weight: bold;
+					"
+					>
+						Baixar PDF
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!--Incluindo bootstrap-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+			crossorigin="anonymous"
+		></script>
+		<script src="jquery-3.7.1.min.js"></script>
+		<script src="../relatorio/relatorio.js"></script>
+	</body>
+</html>
